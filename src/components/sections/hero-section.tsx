@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -33,7 +34,7 @@ export function HeroSection() {
   return (
     <section id="home" className="relative h-screen min-h-[700px] w-full flex items-center justify-center overflow-hidden">
       <AnimatedBackground />
-      <div className="absolute inset-0 bg-black/30 z-10" />
+      <div className="absolute inset-0 bg-black/60 z-10" />
 
       <motion.div 
         className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center"
@@ -76,16 +77,31 @@ export function HeroSection() {
           className="flex flex-wrap justify-center gap-4"
           variants={itemVariants}
         >
-          <Button asChild size="lg" className="btn-gradient rounded-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40">
-            <Link href="#projects">
-              Company Profile
-            </Link>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="neumorphic-outline text-foreground hover:text-primary hover:border-primary">
-            <Link href="#contact">
-              Get In Touch
-            </Link>
-          </Button>
+          <motion.div
+            animate={{
+              scale: [1, 1.05, 1],
+              boxShadow: ["0 0 0px hsl(var(--primary) / 0.5)", "0 0 20px hsl(var(--primary) / 0.8)", "0 0 0px hsl(var(--primary) / 0.5)"],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="rounded-lg"
+          >
+            <Button asChild size="lg" className="btn-gradient rounded-lg shadow-lg">
+              <Link href="#projects">
+                Company Profile
+              </Link>
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Button asChild size="lg" variant="outline" className="neumorphic-outline text-foreground hover:text-primary hover:border-primary">
+              <Link href="#contact">
+                Get In Touch
+              </Link>
+            </Button>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

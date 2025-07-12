@@ -12,15 +12,17 @@ export function AnimatedBackground() {
   const dots = useMemo(() => {
     if (!isMounted) return [];
     
-    const numDots = 50;
-    const colors = ['#00FFFF', '#FF00FF', '#00F5A0'];
+    const numDots = 100;
+    const colors = ['hsl(var(--primary))', 'hsl(var(--gradient-via))', 'hsl(var(--gradient-from))'];
     return Array.from({ length: numDots }).map((_, i) => {
-      const size = Math.random() * 3 + 1;
+      const size = Math.random() * 4 + 1;
       const x = Math.random() * 100;
       const y = Math.random() * 100;
-      const duration = Math.random() * 10 + 10;
+      const duration = Math.random() * 15 + 10;
       const delay = Math.random() * 10;
       const color = colors[Math.floor(Math.random() * colors.length)];
+      const scaleStart = Math.random() * 0.5 + 0.5;
+      const scaleEnd = Math.random() * 0.5 + 0.5;
 
       const xEnd = x + (Math.random() - 0.5) * 40;
       const yEnd = y + (Math.random() - 0.5) * 40;
@@ -35,12 +37,14 @@ export function AnimatedBackground() {
             left: `${x}%`,
             top: `${y}%`,
             backgroundColor: color,
-            filter: `blur(${Math.random() * 3 + 1}px)`,
+            filter: `blur(${Math.random() * 4 + 2}px)`,
             animation: `dots ${duration}s infinite alternate ease-in-out`,
             animationDelay: `${delay}s`,
             // @ts-ignore
             '--x-end': `${xEnd - x}vw`,
             '--y-end': `${yEnd - y}vh`,
+            '--scale-start': scaleStart,
+            '--scale-end': scaleEnd,
           }}
         />
       );

@@ -5,33 +5,33 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222.2 47.4% 11.2%;
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
  
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
  
-    --primary: 180 100% 25%; /* #008080 - Deep Teal */
+    --primary: 180 100% 35%; 
     --primary-foreground: 210 40% 98%;
  
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
  
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
  
-    --accent: 142.1 76.2% 36.3%; /* #00A36C - Blue-Green */
+    --accent: 142.1 76.2% 46.3%;
     --accent-foreground: 210 40% 98%;
  
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 47.4% 11.2%;
+    --border: 217 33% 27%;
+    --input: 217 33% 17%;
+    --ring: 180 100% 50%;
  
     --radius: 0.5rem;
 
@@ -41,16 +41,16 @@
   }
  
   .dark {
-    --background: 204 10% 95%; /* #F0F8FF - Very light teal/blue */
-    --foreground: 224 71% 4%;
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 222 84% 5%;
+    --card: 222 84% 5.9%;
     --card-foreground: 210 40% 98%;
  
-    --popover: 222 84% 5%;
+    --popover: 222 84% 5.9%;
     --popover-foreground: 210 40% 98%;
  
-    --primary: 180 100% 25%; /* #008080 - Deep Teal */
+    --primary: 180 100% 35%; /* #00b3b3 - Brighter Teal */
     --primary-foreground: 210 40% 98%;
  
     --secondary: 217 33% 17%;
@@ -59,13 +59,13 @@
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
  
-    --accent: 142.1 76.2% 36.3%; /* #00A36C - Blue-Green */
-    --accent-foreground: 224 71% 4%;
+    --accent: 142.1 76.2% 46.3%; /* #17c671 - Bright Green */
+    --accent-foreground: 210 40% 98%;
  
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
  
-    --border: 180 100% 25%; /* Teal border */
+    --border: 217 33% 27%; /* Teal border */
     --input: 217 33% 17%;
     --ring: 180 100% 50%; /* Cyan ring */
 
@@ -82,9 +82,6 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'PT Sans', sans-serif;
-  }
-  .dark body {
-     @apply bg-gray-900 text-gray-100;
   }
 }
 
@@ -209,7 +206,7 @@
 
   @keyframes dots {
     0% {
-      transform: translate(0, 0);
+      transform: translate(0, 0) scale(var(--scale-start));
       opacity: 0;
     }
     20% {
@@ -219,7 +216,7 @@
       opacity: 1;
     }
     100% {
-      transform: translate(var(--x-end), var(--y-end));
+      transform: translate(var(--x-end), var(--y-end)) scale(var(--scale-end));
       opacity: 0;
     }
   }

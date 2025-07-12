@@ -43,7 +43,12 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {children}
-      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+      <motion.div
+        className="transform"
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+      </motion.div>
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
@@ -62,7 +67,7 @@ const AccordionContent = React.forwardRef<
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
       className={cn("pb-4 pt-0", className)}
     >
       {children}

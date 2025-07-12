@@ -81,12 +81,11 @@ export function ServicesSection() {
         >
           {services.map((service) => (
             <motion.div key={service.title} variants={itemVariants}>
-              <Card className="text-center h-full glassmorphic group hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl hover:shadow-cyan-500/10">
+              <Card className="text-center h-full glassmorphic group hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl hover:shadow-cyan-500/20">
                 <CardHeader className="items-center p-6 md:p-8">
                   <motion.div 
                     className="p-4 bg-primary/10 rounded-full mb-4 border border-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20"
-                    whileHover={{ rotate: 15, scale: 1.2 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    whileHover={{ rotate: 360, scale: 1.3, transition: { duration: 0.5, type: 'spring', stiffness: 260, damping: 20 } }}
                   >
                     <service.icon className="h-8 w-8 text-primary icon-glow transition-all duration-300 group-hover:text-white" />
                   </motion.div>

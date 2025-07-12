@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark !scroll-smooth">
-      <body className={cn("font-body antialiased bg-background", ptSans.variable)}>
+      <body className={cn("font-body antialiased", ptSans.variable)}>
         {children}
       </body>
     </html>

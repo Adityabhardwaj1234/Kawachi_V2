@@ -47,14 +47,14 @@ export function ProjectsSection() {
   const isVisible = useOnScreen(ref, { threshold: 0.1 });
 
   const cardVariants = {
-    initial: { opacity: 0, y: 50, rotateX: -10 },
+    initial: { opacity: 0, y: 50, rotateX: -20 },
     animate: (index: number) => ({
       opacity: 1,
       y: 0,
       rotateX: 0,
       transition: {
         delay: index * 0.15,
-        duration: 0.6,
+        duration: 0.8,
         ease: "easeOut",
       },
     }),
@@ -73,7 +73,7 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8" style={{ perspective: '1000px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8" style={{ perspective: '1200px' }}>
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -83,11 +83,11 @@ export function ProjectsSection() {
               variants={cardVariants}
             >
               <motion.div
-                whileHover={{ y: -10, rotateX: 5, scale: 1.03 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                whileHover={{ y: -15, rotateX: 10, scale: 1.05, boxShadow: "0px 25px 50px -12px rgba(0, 255, 255, 0.2)" }}
+                transition={{ type: 'spring', stiffness: 200, damping: 20 }}
                 className="h-full"
               >
-                <Card className="overflow-hidden group h-full flex flex-col transform-style-3d">
+                <Card className="overflow-hidden group h-full flex flex-col transform-style-3d glassmorphic">
                   <CardContent className="p-0 relative">
                     <motion.div className="overflow-hidden">
                       <Image
@@ -101,12 +101,12 @@ export function ProjectsSection() {
                     </motion.div>
                      <Badge variant="default" className="absolute top-4 right-4 bg-primary/80 backdrop-blur-sm">{project.category}</Badge>
                   </CardContent>
-                  <CardFooter className="p-6 bg-secondary flex-grow flex-col items-start">
+                  <CardFooter className="p-6 bg-card/70 flex-grow flex-col items-start">
                     <h4 className="text-xl font-bold mb-1">{project.title}</h4>
                     <p className="text-muted-foreground mb-4">{project.location}</p>
                     <Button asChild variant="link" className="p-0 h-auto mt-auto">
                       <Link href={`/project/${project.slug}`}>
-                        View Project Details <ArrowRight className="ml-2 h-4 w-4" />
+                        View Project Details <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
                       </Link>
                     </Button>
                   </CardFooter>

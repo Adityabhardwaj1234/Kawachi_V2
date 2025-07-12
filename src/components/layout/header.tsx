@@ -69,7 +69,9 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex h-24 items-center justify-between">
             <Link href="#home" className="relative z-10">
-              <Logo />
+              <motion.div whileHover={{ scale: 1.1, rotate: 5 }}>
+                <Logo />
+              </motion.div>
             </Link>
             <nav className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
