@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef } from 'react';
@@ -8,6 +9,7 @@ import { ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useOnScreen } from '@/hooks/use-on-screen';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const projects = [
   {
@@ -44,6 +46,20 @@ export function ProjectsSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref, { threshold: 0.1 });
 
+  const cardVariants = {
+    initial: { opacity: 0, y: 50, rotateX: -10 },
+    animate: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        delay: index * 0.15,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
     <section id="projects" className="py-20 md:py-32 bg-background overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4">
@@ -57,20 +73,32 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className={isVisible ? 'is-visible' : ''}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <div key={project.title} className="animate-in-view" style={{ transitionDelay: `${index * 150}ms` }}>
-                <Card className="overflow-hidden group h-full flex flex-col">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8" style={{ perspective: '1000px' }}>
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              custom={index}
+              initial="initial"
+              animate={isVisible ? 'animate' : 'initial'}
+              variants={cardVariants}
+            >
+              <motion.div
+                whileHover={{ y: -10, rotateX: 5, scale: 1.03 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="h-full"
+              >
+                <Card className="overflow-hidden group h-full flex flex-col transform-style-3d">
                   <CardContent className="p-0 relative">
-                    <Image
-                      src={project.image.src}
-                      alt={project.title}
-                      data-ai-hint={project.image.hint}
-                      width={600}
-                      height={400}
-                      className="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <motion.div className="overflow-hidden">
+                      <Image
+                        src={project.image.src}
+                        alt={project.title}
+                        data-ai-hint={project.image.hint}
+                        width={600}
+                        height={400}
+                        className="object-cover w-full h-64 transition-transform duration-500 ease-in-out group-hover:scale-110"
+                      />
+                    </motion.div>
                      <Badge variant="default" className="absolute top-4 right-4 bg-primary/80 backdrop-blur-sm">{project.category}</Badge>
                   </CardContent>
                   <CardFooter className="p-6 bg-secondary flex-grow flex-col items-start">
@@ -83,9 +111,9 @@ export function ProjectsSection() {
                     </Button>
                   </CardFooter>
                 </Card>
-              </div>
-            ))}
-          </div>
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

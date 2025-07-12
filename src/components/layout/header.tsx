@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -75,7 +76,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary))]"
+                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary animated-underline"
                 >
                   {link.label}
                 </Link>

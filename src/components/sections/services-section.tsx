@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef } from 'react';
@@ -84,7 +85,8 @@ export function ServicesSection() {
                 <CardHeader className="items-center p-6 md:p-8">
                   <motion.div 
                     className="p-4 bg-primary/10 rounded-full mb-4 border border-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20"
-                    whileHover={{ rotate: 15 }}
+                    whileHover={{ rotate: 15, scale: 1.2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
                     <service.icon className="h-8 w-8 text-primary icon-glow transition-all duration-300 group-hover:text-white" />
                   </motion.div>

@@ -1,9 +1,11 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
+"use client";
+
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import * as React from "react";
 
 const faqItems = [
   {
@@ -24,6 +26,50 @@ const faqItems = [
   }
 ];
 
+const Accordion = AccordionPrimitive.Root;
+const AccordionItem = AccordionPrimitive.Item;
+
+const AccordionTrigger = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "flex flex-1 items-center justify-between py-4 font-semibold transition-all hover:no-underline group",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+    </AccordionPrimitive.Trigger>
+  </AccordionPrimitive.Header>
+));
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+
+const AccordionContent = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Content
+    ref={ref}
+    className="overflow-hidden text-sm"
+    {...props}
+  >
+    <motion.div
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: "auto" }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className={cn("pb-4 pt-0", className)}
+    >
+      {children}
+    </motion.div>
+  </AccordionPrimitive.Content>
+));
+AccordionContent.displayName = "AccordionContent";
 
 export function FaqSection() {
   return (
@@ -42,13 +88,15 @@ export function FaqSection() {
             <div>
                  <Accordion type="single" collapsible className="w-full">
                     {faqItems.map((item, index) => (
-                        <AccordionItem value={`item-${index}`} key={index}>
-                            <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                        <AccordionItem value={`item-${index}`} key={index} className="border-b">
+                            <AccordionTrigger>
                                 {item.question}
                             </AccordionTrigger>
-                            <AccordionContent>
-                                {item.answer}
-                            </AccordionContent>
+                            <AnimatePresence initial={false}>
+                              <AccordionContent>
+                                  {item.answer}
+                              </AccordionContent>
+                            </AnimatePresence>
                         </AccordionItem>
                     ))}
                 </Accordion>
