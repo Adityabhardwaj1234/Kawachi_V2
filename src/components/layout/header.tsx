@@ -69,7 +69,10 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex h-24 items-center justify-between">
             <Link href="#home" className="relative z-10">
-              <motion.div whileHover={{ scale: 1.1, rotate: 5 }}>
+              <motion.div 
+                whileHover={{ scale: 1.1, rotate: 5, filter: 'drop-shadow(0 0 10px hsl(var(--primary)))' }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <Logo />
               </motion.div>
             </Link>

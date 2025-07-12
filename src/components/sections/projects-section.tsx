@@ -85,9 +85,10 @@ export function ProjectsSection() {
               <motion.div
                 whileHover={{ y: -15, rotateX: 10, scale: 1.05, boxShadow: "0px 25px 50px -12px rgba(0, 255, 255, 0.2)" }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                className="h-full"
+                className="h-full relative group"
               >
-                <Card className="overflow-hidden group h-full flex flex-col transform-style-3d glassmorphic">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                <Card className="overflow-hidden h-full flex flex-col transform-style-3d glassmorphic relative">
                   <CardContent className="p-0 relative">
                     <motion.div className="overflow-hidden">
                       <Image

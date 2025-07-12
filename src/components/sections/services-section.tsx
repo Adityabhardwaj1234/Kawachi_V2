@@ -79,13 +79,30 @@ export function ServicesSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {services.map((service) => (
+          {services.map((service, index) => (
             <motion.div key={service.title} variants={itemVariants}>
-              <Card className="text-center h-full glassmorphic group hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl hover:shadow-cyan-500/20">
+              <Card className="text-center h-full glassmorphic group hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 relative">
+                 <div className="absolute top-0 left-0 w-full h-full border-2 border-primary rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
+                   animation: 'border-pan 4s linear infinite',
+                   background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
+                   backgroundSize: '200% 100%',
+                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                   maskComposite: 'exclude',
+                   WebkitMaskComposite: 'xor',
+                 }}></div>
                 <CardHeader className="items-center p-6 md:p-8">
                   <motion.div 
                     className="p-4 bg-primary/10 rounded-full mb-4 border border-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20"
-                    whileHover={{ rotate: 360, scale: 1.3, transition: { duration: 0.5, type: 'spring', stiffness: 260, damping: 20 } }}
+                    animate={{
+                      rotate: [0, 360],
+                      scale: [1, 1.1, 1],
+                    }}
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      ease: 'linear',
+                      delay: index * 0.5
+                    }}
                   >
                     <service.icon className="h-8 w-8 text-primary icon-glow transition-all duration-300 group-hover:text-white" />
                   </motion.div>
