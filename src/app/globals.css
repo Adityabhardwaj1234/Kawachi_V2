@@ -176,10 +176,19 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% auto;
-    transition: background-position 0.5s ease-in-out;
+    animation: animate-gradient 5s linear infinite;
   }
-  .text-gradient-hero:hover {
-    background-position: -100% center;
+
+  @keyframes animate-gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   @keyframes dots {
