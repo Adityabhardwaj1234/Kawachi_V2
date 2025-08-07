@@ -73,9 +73,9 @@ export function StarsBackground() {
         />
       ))}
       
-      {/* Shooting stars */}
+      {/* Shooting stars - reduced on mobile */}
       <div className="absolute top-0 left-0 w-full h-full">
-        {[...Array(3)].map((_, i) => (
+        {[...Array(typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 3)].map((_, i) => (
           <div
             key={`shooting-${i}`}
             className="absolute w-1 h-1 bg-white rounded-full opacity-80"
