@@ -107,20 +107,69 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
       >
-        <motion.h1 
-          className="font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight mb-4 text-gradient-hero"
-          style={{ textShadow: '0 0 25px hsl(var(--primary) / 0.5), 0 0 50px hsl(var(--gradient-via) / 0.3)' }}
-          variants={itemVariants}
-        >
-          Kawachi Infratech Private
-        </motion.h1>
-        <motion.h1 
-          className="font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight mb-6 text-gradient-hero"
-          style={{ textShadow: '0 0 25px hsl(var(--primary) / 0.5), 0 0 50px hsl(var(--gradient-via) / 0.3)' }}
-          variants={itemVariants}
-        >
-          Limited
-        </motion.h1>
+        <div className="relative">
+          {/* Background glowing text */}
+          <motion.h1
+            className="absolute font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight mb-4 text-white/10 blur-sm"
+            animate={{
+              scale: [1, 1.05, 1],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            Kawachi Infratech Private
+          </motion.h1>
+          <motion.h1
+            className="font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight mb-4 text-gradient-hero relative z-10"
+            style={{
+              textShadow: '0 0 30px hsl(var(--primary) / 0.8), 0 0 60px hsl(var(--gradient-via) / 0.4), 0 0 90px hsl(var(--accent) / 0.2)',
+              filter: 'drop-shadow(0 0 20px hsl(var(--primary)))'
+            }}
+            variants={itemVariants}
+            whileHover={{
+              scale: 1.02,
+              textShadow: '0 0 40px hsl(var(--primary)), 0 0 80px hsl(var(--gradient-via) / 0.6), 0 0 120px hsl(var(--accent) / 0.3)',
+            }}
+          >
+            Kawachi Infratech Private
+          </motion.h1>
+        </div>
+        <div className="relative">
+          {/* Background glowing text */}
+          <motion.h1
+            className="absolute font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight mb-6 text-white/10 blur-sm"
+            animate={{
+              scale: [1, 1.05, 1],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
+          >
+            Limited
+          </motion.h1>
+          <motion.h1
+            className="font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight mb-6 text-gradient-hero relative z-10"
+            style={{
+              textShadow: '0 0 30px hsl(var(--primary) / 0.8), 0 0 60px hsl(var(--gradient-via) / 0.4), 0 0 90px hsl(var(--accent) / 0.2)',
+              filter: 'drop-shadow(0 0 20px hsl(var(--primary)))'
+            }}
+            variants={itemVariants}
+            whileHover={{
+              scale: 1.02,
+              textShadow: '0 0 40px hsl(var(--primary)), 0 0 80px hsl(var(--gradient-via) / 0.6), 0 0 120px hsl(var(--accent) / 0.3)',
+            }}
+          >
+            Limited
+          </motion.h1>
+        </div>
 
         <motion.p 
           className="text-lg text-blue-300 mb-6"
