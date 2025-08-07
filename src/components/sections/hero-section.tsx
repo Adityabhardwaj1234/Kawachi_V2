@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -32,9 +31,10 @@ export function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative h-screen min-h-[700px] w-full flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative h-screen min-h-[700px] w-full flex items-center justify-center overflow-hidden bg-divine">
       <AnimatedBackground />
-      <div className="absolute inset-0 bg-black/60 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 z-10" />
+      <div className="absolute inset-0 floating-particles z-5" />
 
       <motion.div 
         className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center"
@@ -80,25 +80,57 @@ export function HeroSection() {
           <motion.div
             animate={{
               scale: [1, 1.05, 1],
-              boxShadow: ["0 0 0px hsl(var(--primary) / 0.5)", "0 0 20px hsl(var(--primary) / 0.8)", "0 0 0px hsl(var(--primary) / 0.5)"],
+              boxShadow: [
+                "0 0 20px hsl(var(--primary) / 0.5)",
+                "0 0 40px hsl(var(--primary) / 0.8)",
+                "0 0 20px hsl(var(--primary) / 0.5)"
+              ],
             }}
             transition={{
-              duration: 2.5,
+              duration: 3,
               repeat: Infinity,
               ease: "easeInOut",
             }}
             className="rounded-lg"
+            whileHover={{
+              scale: 1.1,
+              boxShadow: "0 0 50px hsl(var(--primary) / 0.9)",
+              y: -5
+            }}
+            whileTap={{ scale: 0.95 }}
           >
-            <Button asChild size="lg" className="btn-gradient rounded-lg shadow-lg">
-              <Link href="#projects">
-                Company Profile
+            <Button asChild size="lg" className="btn-gradient rounded-lg shadow-lg divine-glow relative overflow-hidden">
+              <Link href="#about">
+                <motion.span
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  Company Profile
+                </motion.span>
               </Link>
             </Button>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <Button asChild size="lg" variant="outline" className="neumorphic-outline text-foreground hover:text-primary hover:border-primary">
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+              y: -3,
+              boxShadow: "0 0 30px hsl(var(--primary) / 0.6)"
+            }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="neumorphic-outline glassmorphic-card text-foreground hover:text-primary hover:border-primary divine-glow-hover"
+            >
               <Link href="#contact">
-                Get In Touch
+                <motion.span
+                  animate={{ opacity: [0.8, 1, 0.8] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  Get In Touch
+                </motion.span>
               </Link>
             </Button>
           </motion.div>
