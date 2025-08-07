@@ -33,6 +33,14 @@ export function Header() {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
+
+    // Check if we're on the home page or need to navigate
+    if (window.location.pathname !== '/') {
+      // Navigate to home page with hash
+      window.location.href = `/${href}`;
+      return;
+    }
+
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
