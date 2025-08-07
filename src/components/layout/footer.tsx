@@ -178,15 +178,40 @@ export function Footer() {
               ))}
             </div>
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Button 
-                asChild 
-                className="btn-gradient-contact rounded-lg w-full shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40"
-              >
-                <Link href="#contact">Get Quote</Link>
-              </Button>
+              <RippleEffect className="w-full rounded-lg">
+                <Button
+                  className="btn-gradient-contact rounded-lg w-full shadow-2xl px-6 py-3 text-lg font-bold relative overflow-hidden"
+                  style={{
+                    background: 'linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
+                    backgroundSize: '200% 200%',
+                    animation: 'gradient-shift 4s ease infinite',
+                    boxShadow: '0 0 30px hsl(var(--primary) / 0.4), 0 0 60px hsl(var(--primary) / 0.2)',
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      const headerHeight = 96;
+                      const elementPosition = contactSection.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
+                  <span className="relative z-10">Get Quote</span>
+                </Button>
+              </RippleEffect>
             </motion.div>
           </motion.div>
         </motion.div>
