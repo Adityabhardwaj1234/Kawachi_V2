@@ -187,10 +187,34 @@ export function HeroSection() {
           </p>
         </motion.div>
 
-        <motion.div 
-          className="flex flex-wrap justify-center gap-4"
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 relative"
           variants={itemVariants}
         >
+          {/* Floating particles around buttons */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent opacity-60"
+              style={{
+                left: `${20 + i * 10}%`,
+                top: `${30 + (i % 3) * 20}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 3 + i * 0.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.3,
+              }}
+            />
+          ))}
+
           <motion.div
             animate={{
               scale: [1, 1.05, 1],
@@ -205,7 +229,7 @@ export function HeroSection() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="rounded-lg"
+            className="rounded-lg relative"
             whileHover={{
               scale: 1.1,
               boxShadow: "0 0 50px hsl(var(--primary) / 0.9)",
@@ -213,15 +237,32 @@ export function HeroSection() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button asChild size="lg" className="btn-gradient rounded-lg shadow-lg divine-glow relative overflow-hidden">
-              <Link href="#about">
+            <Button
+              asChild
+              size="lg"
+              className="btn-gradient rounded-lg shadow-lg divine-glow relative overflow-hidden"
+              onClick={(e) => {
+                e.preventDefault();
+                const aboutSection = document.getElementById('about');
+                if (aboutSection) {
+                  const headerHeight = 96;
+                  const elementPosition = aboutSection.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+            >
+              <a href="#about">
                 <motion.span
                   animate={{ x: [0, 3, 0] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
                   Company Profile
                 </motion.span>
-              </Link>
+              </a>
             </Button>
           </motion.div>
           <motion.div
@@ -238,14 +279,29 @@ export function HeroSection() {
               variant="outline"
               className="neumorphic-outline glassmorphic-card text-foreground hover:text-primary hover:border-primary divine-glow-hover"
             >
-              <Link href="#contact">
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    const headerHeight = 96;
+                    const elementPosition = contactSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+              >
                 <motion.span
                   animate={{ opacity: [0.8, 1, 0.8] }}
                   transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                 >
                   Get In Touch
                 </motion.span>
-              </Link>
+              </a>
             </Button>
           </motion.div>
         </motion.div>
