@@ -56,7 +56,7 @@ export function NewsSection() {
   };
 
   return (
-    <section id="news" className="py-20 md:py-32 bg-background overflow-hidden" ref={ref}>
+    <section id="news" className="py-20 md:py-32 bg-divine floating-particles relative overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center max-w-2xl mx-auto mb-16"
@@ -65,7 +65,7 @@ export function NewsSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-sm font-bold uppercase text-primary mb-2">News & Updates</h2>
-          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gradient-hero">
             Latest Happenings
           </h3>
           <p className="text-muted-foreground">
@@ -79,28 +79,65 @@ export function NewsSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {newsItems.map((item) => (
-            <motion.div key={item.title} variants={itemVariants}>
-              <Card className="overflow-hidden group h-full flex flex-col glassmorphic hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-0 relative">
-                  <Image
-                    src={item.image.src}
-                    alt={item.title}
-                    data-ai-hint={item.image.hint}
-                    width={600}
-                    height={400}
-                    className="object-cover w-full h-56 group-hover:scale-105 transition-transform duration-500"
-                  />
-                   <Badge variant="default" className="absolute top-4 right-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white border-none shadow-lg">
+          {newsItems.map((item, index) => (
+            <motion.div
+              key={item.title}
+              variants={itemVariants}
+              whileHover={{
+                scale: 1.05,
+                y: -10,
+                rotateY: 5,
+                boxShadow: "0 20px 40px rgba(0, 255, 255, 0.2)"
+              }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            >
+              <Card className="overflow-hidden group h-full flex flex-col glassmorphic-card neumorphic-card divine-glow-hover relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-lg blur opacity-0 group-hover:opacity-75 transition-all duration-700" />
+                <CardContent className="p-0 relative z-10">
+                  <motion.div className="overflow-hidden">
+                    <Image
+                      src={item.image.src}
+                      alt={item.title}
+                      data-ai-hint={item.image.hint}
+                      width={600}
+                      height={400}
+                      className="object-cover w-full h-56 group-hover:scale-110 group-hover:brightness-110 transition-all duration-700"
+                    />
+                  </motion.div>
+                  <Badge
+                    variant="default"
+                    className="absolute top-4 right-4 bg-gradient-to-r from-primary/90 to-accent/90 backdrop-blur-md border border-white/20 text-white font-semibold shadow-lg"
+                  >
                     {item.category}
                   </Badge>
                 </CardContent>
-                <CardFooter className="p-6 flex-grow flex-col items-start">
-                  <p className="text-sm text-muted-foreground mb-2">{item.date}</p>
-                  <h4 className="text-lg font-bold mb-4 flex-grow">{item.title}</h4>
-                  <Button variant="link" className="p-0 h-auto mt-auto text-primary hover:text-cyan-300">
-                    <Link href="#">Read More <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                  </Button>
+                <CardFooter className="p-6 flex-grow flex-col items-start bg-gradient-to-t from-background/95 to-background/80 backdrop-blur-xl relative z-10">
+                  <motion.p
+                    className="text-sm text-muted-foreground mb-2"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
+                  >
+                    {item.date}
+                  </motion.p>
+                  <h4 className="text-lg font-bold mb-4 flex-grow group-hover:text-gradient-hero transition-all duration-300">{item.title}</h4>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-auto"
+                  >
+                    <Button variant="link" className="p-0 h-auto text-primary hover:text-accent transition-all duration-300">
+                      <Link href="#news">
+                        Read More
+                        <motion.div
+                          className="ml-2 inline-block"
+                          animate={{ x: [0, 3, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <ArrowRight className="h-4 w-4" />
+                        </motion.div>
+                      </Link>
+                    </Button>
+                  </motion.div>
                 </CardFooter>
               </Card>
             </motion.div>
