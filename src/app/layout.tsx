@@ -10,8 +10,16 @@ const ptSans = PT_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Kawachi Infratech',
-  description: 'Engineering Infrastructure for the Future',
+  title: 'Kawachi Infratech Pvt Ltd | Engineering Infrastructure for the Future',
+  description: 'Premium construction and infrastructure company delivering innovative, scalable, and sustainable engineering solutions across India. Experience divine-level construction excellence.',
+  keywords: 'construction, infrastructure, engineering, kawachi, building, architecture, sustainable construction',
+  authors: [{ name: 'Kawachi Infratech Pvt Ltd' }],
+  viewport: 'width=device-width, initial-scale=1',
+  robots: 'index, follow',
+  icons: {
+    icon: '/Kawachi_logo_design4.jpg',
+    apple: '/Kawachi_logo_design4.jpg',
+  },
 };
 
 export default function RootLayout({

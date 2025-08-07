@@ -1,16 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { CelestialBackground } from '@/components/ui/celestial-background';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 import { Logo } from "@/components/icons/logo";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Twitter, Facebook, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Twitter, Facebook, Mail, Phone, MapPin, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
+import { RippleEffect } from '@/components/ui/ripple-effect';
 
 export function Footer() {
   const socialLinks = [
-    { icon: Twitter, href: "https://twitter.com/kawachiinfra", label: "Twitter" },
-    { icon: Facebook, href: "https://facebook.com/kawachiinfra", label: "Facebook" },
-    { icon: Linkedin, href: "https://linkedin.com/company/kawachi-infratech", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://linkedin.com/company/kawachi-infratech", label: "LinkedIn", color: "rgba(0, 119, 181, 0.8)" },
+    { icon: Instagram, href: "https://instagram.com/kawachiinfratech", label: "Instagram", color: "rgba(225, 48, 108, 0.8)" },
+    { icon: Mail, href: "mailto:info@kawachiinfratech.com", label: "Email", color: "rgba(0, 255, 255, 0.8)" },
   ];
 
   const contactInfo = [
@@ -58,7 +61,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-divine floating-particles relative overflow-hidden" id="contact">
+    <footer className="bg-divine relative overflow-hidden" id="contact">
+      <CelestialBackground />
+      <FloatingParticles />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
       <div className="relative z-10 container mx-auto px-4 py-20">
         <motion.div 
@@ -136,36 +141,77 @@ export function Footer() {
               {socialLinks.map((social, index) => (
                 <motion.div
                   key={index}
-                  whileHover={{ 
-                    scale: 1.2, 
-                    y: -3,
-                    boxShadow: "0 0 20px hsl(var(--primary) / 0.6)"
+                  whileHover={{
+                    scale: 1.15,
+                    y: -5,
+                    boxShadow: `0 0 30px ${social.color}, 0 0 60px ${social.color}`,
                   }}
                   whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    asChild 
-                    className="glassmorphic-card border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-300"
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    asChild
+                    className="glassmorphic-card border-white/20 hover:border-primary transition-all duration-500 relative overflow-hidden group"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,255,255,0.05) 50%, rgba(255,255,255,0.05) 100%)',
+                      backdropFilter: 'blur(20px)',
+                      WebkitBackdropFilter: 'blur(20px)',
+                    }}
                   >
                     <Link href={social.href} aria-label={social.label}>
-                      <social.icon className="h-4 w-4" />
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                        style={{ background: `radial-gradient(circle, ${social.color} 0%, transparent 70%)` }}
+                      />
+                      <social.icon
+                        className="h-5 w-5 relative z-10 transition-all duration-300 group-hover:scale-110"
+                        style={{ color: social.color }}
+                      />
                     </Link>
                   </Button>
                 </motion.div>
               ))}
             </div>
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Button 
-                asChild 
-                className="btn-gradient-contact rounded-lg w-full shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40"
-              >
-                <Link href="#contact">Get Quote</Link>
-              </Button>
+              <RippleEffect className="w-full rounded-lg">
+                <Button
+                  className="btn-gradient-contact rounded-lg w-full shadow-2xl px-6 py-3 text-lg font-bold relative overflow-hidden"
+                  style={{
+                    background: 'linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
+                    backgroundSize: '200% 200%',
+                    animation: 'gradient-shift 4s ease infinite',
+                    boxShadow: '0 0 30px hsl(var(--primary) / 0.4), 0 0 60px hsl(var(--primary) / 0.2)',
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      const headerHeight = 96;
+                      const elementPosition = contactSection.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
+                  <span className="relative z-10">Get Quote</span>
+                </Button>
+              </RippleEffect>
             </motion.div>
           </motion.div>
         </motion.div>

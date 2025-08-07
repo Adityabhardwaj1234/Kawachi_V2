@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef } from 'react';
+import { CelestialBackground } from '@/components/ui/celestial-background';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 import Image from 'next/image';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -60,7 +62,9 @@ export function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-20 md:py-32 bg-divine floating-particles overflow-hidden relative" ref={ref}>
+    <section id="projects" className="py-20 md:py-32 bg-divine overflow-hidden relative" ref={ref}>
+      <CelestialBackground />
+      <FloatingParticles />
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-sm font-bold uppercase text-primary mb-2">Our Portfolio</h2>

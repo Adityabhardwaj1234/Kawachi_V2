@@ -75,12 +75,24 @@
 }
  
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'PT Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  .container {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 }
 
@@ -307,10 +319,91 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 200% 50%; }
+    75% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
   
   .animate-gradient-pan {
     background-size: 200% 200%;
     animation: gradient-pan 10s ease infinite;
+  }
+
+  /* Enhanced mobile responsiveness */
+  @media (max-width: 768px) {
+    .glassmorphic-card {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .text-gradient-hero {
+      font-size: clamp(2rem, 8vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .divine-glow {
+      box-shadow: 0 0 15px hsl(var(--primary) / 0.3), 0 0 30px hsl(var(--primary) / 0.15);
+    }
+
+    .animate-float {
+      animation-duration: 4s;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-gradient-hero {
+      font-size: clamp(1.5rem, 10vw, 2.5rem);
+    }
+
+    .glassmorphic {
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (pointer: coarse) {
+    .neumorphic-card:hover {
+      transform: none;
+    }
+
+    .divine-glow-hover:hover {
+      transform: none;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  }
+
+  /* Performance optimizations */
+  .animate-float, .animate-float-slow, .animate-float-fast {
+    will-change: transform;
+  }
+
+  .text-gradient-hero {
+    will-change: filter;
+  }
+
+  .glassmorphic, .glassmorphic-card {
+    will-change: backdrop-filter;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .animate-float, .animate-float-slow, .animate-float-fast {
+      animation: none;
+    }
   }
 
   @keyframes dots {

@@ -11,27 +11,30 @@ import { MotionProvider } from "@/components/providers/motion-provider";
 import { ContactSection } from "@/components/sections/contact-section";
 import { NewsSection } from "@/components/sections/news-section";
 import { RippleProvider } from "@/components/providers/ripple-provider";
+import { ParallaxProvider } from "@/components/providers/parallax-provider";
 
 export default function Home() {
   return (
-    <MotionProvider>
-      <RippleProvider>
-        <div className="flex flex-col min-h-screen bg-background">
-          <Header />
-          <main className="flex-grow">
-            <HeroSection />
-            <ServicesSection />
-            <AboutSection />
-            <ProjectsSection />
-            <NewsSection />
-            <FaqSection />
-            <NewsletterSection />
-            <ContactSection />
-          </main>
-          <Footer />
-          <Toaster />
-        </div>
-      </RippleProvider>
-    </MotionProvider>
+    <ParallaxProvider>
+      <MotionProvider>
+        <RippleProvider>
+          <div className="flex flex-col min-h-screen bg-background">
+            <Header />
+            <main className="flex-grow">
+              <HeroSection />
+              <ServicesSection />
+              <AboutSection />
+              <ProjectsSection />
+              <NewsSection />
+              <FaqSection />
+              <NewsletterSection />
+              <ContactSection />
+            </main>
+            <Footer />
+            <Toaster />
+          </div>
+        </RippleProvider>
+      </MotionProvider>
+    </ParallaxProvider>
   );
 }

@@ -30,6 +30,33 @@ export function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+
+    // Check if we're on the home page or need to navigate
+    if (window.location.pathname !== '/') {
+      // Navigate to home page with hash
+      window.location.href = `/${href}`;
+      return;
+    }
+
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const headerHeight = 96; // 24 * 4 = 96px (h-24)
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+
+    setIsMenuOpen(false);
+  };
+
   const menuVariants = {
     hidden: { opacity: 0, y: "-100%" },
     visible: { 
@@ -60,36 +87,53 @@ export function Header() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-700",
           isScrolled
-            ? "glassmorphic shadow-lg shadow-cyan-500/10 border-b border-cyan-400/30"
-            : "bg-transparent"
+            ? "bg-gradient-to-r from-background/80 via-background/90 to-background/80 backdrop-blur-2xl border-b border-gradient-to-r from-transparent via-primary/40 to-transparent shadow-2xl shadow-primary/20"
+            : "bg-gradient-to-r from-background/20 via-background/30 to-background/20 backdrop-blur-xl"
         )}
+        style={{
+          background: isScrolled
+            ? 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,20,40,0.9) 50%, rgba(0,0,0,0.85) 100%)'
+            : 'linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,20,40,0.4) 50%, rgba(0,0,0,0.3) 100%)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          boxShadow: isScrolled
+            ? '0 8px 32px rgba(0, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            : '0 4px 16px rgba(0, 0, 0, 0.1)',
+        }}
       >
         <div className="container mx-auto px-4">
           <div className="flex h-24 items-center justify-between">
-            <Link href="#home" className="relative z-10">
-              <motion.div 
+            <a href="#home" onClick={(e) => handleSmoothScroll(e, '#home')} className="relative z-10">
+              <motion.div
                 whileHover={{ scale: 1.1, rotate: 5, filter: 'drop-shadow(0 0 10px hsl(var(--primary)))' }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Logo />
               </motion.div>
-            </Link>
+            </a>
             <nav className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary animated-underline"
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
+                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary animated-underline cursor-pointer"
                 >
                   {link.label}
-                </Link>
+                </a>
               ))}
             </nav>
             <div className="flex items-center gap-4">
-               <Button asChild className="hidden md:inline-flex btn-gradient-contact rounded-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40">
-                <Link href="#contact">Contact</Link>
+               <Button
+                className="hidden md:inline-flex btn-gradient-contact rounded-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSmoothScroll(e as any, '#contact');
+                }}
+              >
+                Contact
               </Button>
               <motion.button
                 className="md:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center space-y-1.5 focus:outline-none"
@@ -137,9 +181,11 @@ export function Header() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-40 glassmorphic backdrop-blur-3xl md:hidden"
+            className="fixed inset-0 z-40 md:hidden overflow-y-auto"
             style={{
-              background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,20,40,0.95) 100%)'
+              background: 'linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,20,40,0.98) 50%, rgba(20,0,40,0.95) 100%)',
+              backdropFilter: 'blur(25px)',
+              WebkitBackdropFilter: 'blur(25px)',
             }}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -158,16 +204,20 @@ export function Header() {
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Link
+                    <a
                       href={link.href}
-                      className="text-2xl md:text-3xl font-bold text-foreground transition-all duration-300 hover:text-gradient-hero glassmorphic px-6 py-3 rounded-xl border border-white/10"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
+                      className="text-2xl md:text-3xl font-bold text-foreground transition-all duration-500 hover:text-gradient-hero px-6 py-4 rounded-xl border border-white/20 cursor-pointer relative overflow-hidden group"
                       style={{
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)'
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,255,255,0.05) 50%, rgba(255,255,255,0.05) 100%)',
+                        backdropFilter: 'blur(15px)',
+                        WebkitBackdropFilter: 'blur(15px)',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                       }}
                     >
-                      {link.label}
-                    </Link>
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <span className="relative z-10">{link.label}</span>
+                    </a>
                   </motion.div>
                 ))}
               </motion.nav>
@@ -177,12 +227,14 @@ export function Header() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button
-                    asChild
                     className="btn-gradient-contact rounded-xl shadow-lg shadow-cyan-500/30 px-8 py-3 text-lg"
                     size="lg"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSmoothScroll(e as any, '#contact');
+                    }}
                   >
-                    <Link href="#contact">Get In Touch</Link>
+                    Get In Touch
                   </Button>
                 </motion.div>
               </motion.div>
