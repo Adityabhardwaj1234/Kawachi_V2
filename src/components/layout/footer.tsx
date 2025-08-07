@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { StarsBackground } from '@/components/ui/stars-background';
 import { Logo } from "@/components/icons/logo";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Twitter, Facebook, Mail, Phone, MapPin } from "lucide-react";
@@ -58,7 +59,8 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-divine floating-particles relative overflow-hidden" id="contact">
+    <footer className="bg-divine relative overflow-hidden" id="contact">
+      <StarsBackground />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
       <div className="relative z-10 container mx-auto px-4 py-20">
         <motion.div 
