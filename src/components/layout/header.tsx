@@ -181,9 +181,11 @@ export function Header() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-40 glassmorphic backdrop-blur-3xl md:hidden"
+            className="fixed inset-0 z-40 md:hidden overflow-y-auto"
             style={{
-              background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,20,40,0.95) 100%)'
+              background: 'linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,20,40,0.98) 50%, rgba(20,0,40,0.95) 100%)',
+              backdropFilter: 'blur(25px)',
+              WebkitBackdropFilter: 'blur(25px)',
             }}
             onClick={() => setIsMenuOpen(false)}
           >
