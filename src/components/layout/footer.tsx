@@ -5,7 +5,7 @@ import { CelestialBackground } from '@/components/ui/celestial-background';
 import { FloatingParticles } from '@/components/ui/floating-particles';
 import { Logo } from "@/components/icons/logo";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Twitter, Facebook, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Twitter, Facebook, Mail, Phone, MapPin, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Footer() {
