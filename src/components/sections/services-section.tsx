@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from 'react';
+import { StarsBackground } from '@/components/ui/stars-background';
 import { Building2, Wrench, DraftingCompass, ClipboardCheck } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { motion, useInView } from 'framer-motion';
@@ -55,7 +56,8 @@ export function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-divine floating-particles overflow-hidden relative" ref={ref}>
+    <section id="services" className="py-20 md:py-32 bg-divine overflow-hidden relative" ref={ref}>
+      <StarsBackground />
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center max-w-2xl mx-auto mb-16"
