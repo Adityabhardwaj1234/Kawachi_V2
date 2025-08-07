@@ -4,7 +4,8 @@ import { useState, type FormEvent } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import Image from "next/image";
+import { StarsBackground } from '@/components/ui/stars-background';
+import { motion } from 'framer-motion';
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
@@ -29,40 +30,78 @@ export function NewsletterSection() {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="relative bg-primary text-primary-foreground p-8 md:p-16 rounded-lg overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <Image 
-                src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=1200&h=400&fit=crop"
-                data-ai-hint="blueprint lines"
-                alt="Blueprint background"
-                fill
-                className="object-cover"
-            />
-          </div>
+    <section className="py-20 md:py-32 bg-divine relative overflow-hidden">
+      <StarsBackground />
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div 
+          className="relative glassmorphic-card neumorphic-card p-8 md:p-16 rounded-xl overflow-hidden divine-glow-hover"
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          whileHover={{ scale: 1.02, y: -5 }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background/5 backdrop-blur-2xl" />
           <div className="relative z-10 text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4 text-gradient-hero"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               Stay Updated with Kawachi
-            </h2>
-            <p className="text-primary-foreground/80 mb-8">
+            </motion.h2>
+            <motion.p 
+              className="text-muted-foreground mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               Subscribe to our newsletter to get the latest news on our projects, industry insights, and company updates.
-            </p>
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-              <Input
-                type="email"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60 focus:bg-primary-foreground/20"
-                required
-              />
-              <Button type="submit" size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shrink-0">
-                Subscribe
-              </Button>
-            </form>
+            </motion.p>
+            <motion.form 
+              onSubmit={handleSubmit} 
+              className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <motion.div 
+                className="flex-grow"
+                whileFocus={{ scale: 1.02, boxShadow: "0 0 30px hsl(var(--primary) / 0.4)" }}
+              >
+                <Input
+                  type="email"
+                  placeholder="Enter your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="glassmorphic border-white/20 focus:ring-primary focus:border-primary transition-all duration-300 hover:border-primary/50 bg-gradient-to-r from-background/60 to-background/40 placeholder:text-muted-foreground/70"
+                  required
+                />
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="btn-gradient-contact shrink-0 rounded-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 divine-glow relative overflow-hidden"
+                >
+                  <motion.span
+                    animate={{ x: [0, 3, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    Subscribe
+                  </motion.span>
+                </Button>
+              </motion.div>
+            </motion.form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
