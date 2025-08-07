@@ -34,7 +34,72 @@ export function HeroSection() {
     <section id="home" className="relative h-screen min-h-[700px] w-full flex items-center justify-center overflow-hidden bg-divine">
       <AnimatedBackground />
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 z-10" />
-      <div className="absolute inset-0 floating-particles z-5" />
+
+      {/* Enhanced floating cosmic elements */}
+      <div className="absolute inset-0 z-15">
+        <motion.div
+          className="absolute w-32 h-32 rounded-full opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(0, 255, 255, 0.6) 0%, rgba(255, 0, 255, 0.3) 50%, transparent 70%)',
+            left: '10%',
+            top: '20%',
+            filter: 'blur(20px)',
+          }}
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute w-24 h-24 rounded-full opacity-30"
+          style={{
+            background: 'radial-gradient(circle, rgba(255, 0, 255, 0.8) 0%, rgba(0, 255, 127, 0.4) 50%, transparent 70%)',
+            right: '15%',
+            top: '30%',
+            filter: 'blur(15px)',
+          }}
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+            scale: [1, 0.8, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+        <motion.div
+          className="absolute w-40 h-40 rounded-full opacity-15"
+          style={{
+            background: 'radial-gradient(circle, rgba(0, 255, 127, 0.5) 0%, rgba(0, 255, 255, 0.3) 50%, transparent 70%)',
+            left: '70%',
+            bottom: '20%',
+            filter: 'blur(25px)',
+          }}
+          animate={{
+            x: [0, 30, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.3, 1],
+            opacity: [0.15, 0.35, 0.15],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 4,
+          }}
+        />
+      </div>
 
       <motion.div 
         className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center"
