@@ -15,24 +15,26 @@ import { ParallaxProvider } from "@/components/providers/parallax-provider";
 
 export default function Home() {
   return (
-    <MotionProvider>
-      <RippleProvider>
-        <div className="flex flex-col min-h-screen bg-background">
-          <Header />
-          <main className="flex-grow">
-            <HeroSection />
-            <ServicesSection />
-            <AboutSection />
-            <ProjectsSection />
-            <NewsSection />
-            <FaqSection />
-            <NewsletterSection />
-            <ContactSection />
-          </main>
-          <Footer />
-          <Toaster />
-        </div>
-      </RippleProvider>
-    </MotionProvider>
+    <ParallaxProvider>
+      <MotionProvider>
+        <RippleProvider>
+          <div className="flex flex-col min-h-screen bg-background">
+            <Header />
+            <main className="flex-grow">
+              <HeroSection />
+              <ServicesSection />
+              <AboutSection />
+              <ProjectsSection />
+              <NewsSection />
+              <FaqSection />
+              <NewsletterSection />
+              <ContactSection />
+            </main>
+            <Footer />
+            <Toaster />
+          </div>
+        </RippleProvider>
+      </MotionProvider>
+    </ParallaxProvider>
   );
 }
