@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef } from 'react';
@@ -56,7 +55,7 @@ export function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-secondary/30 overflow-hidden" ref={ref}>
+    <section id="services" className="py-20 md:py-32 bg-divine floating-particles overflow-hidden relative" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center max-w-2xl mx-auto mb-16"
@@ -65,7 +64,7 @@ export function ServicesSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-sm font-bold uppercase text-primary mb-2">Our Services</h2>
-          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gradient-hero">
             Let's Build the Future
           </h3>
           <p className="text-muted-foreground">
@@ -81,7 +80,7 @@ export function ServicesSection() {
         >
           {services.map((service, index) => (
             <motion.div key={service.title} variants={itemVariants}>
-              <Card className="text-center h-full glassmorphic group hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 relative">
+              <Card className="text-center h-full glassmorphic-card neumorphic-card group hover:-translate-y-4 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/30 relative divine-glow-hover">
                  <div className="absolute top-0 left-0 w-full h-full border-2 border-primary rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
                    animation: 'border-pan 4s linear infinite',
                    background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
@@ -91,20 +90,30 @@ export function ServicesSection() {
                    WebkitMaskComposite: 'xor',
                  }}></div>
                 <CardHeader className="items-center p-6 md:p-8">
-                  <motion.div 
-                    className="p-4 bg-primary/10 rounded-full mb-4 border border-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20"
+                  <motion.div
+                    className="p-4 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full mb-4 border border-primary/30 transition-all duration-500 group-hover:scale-125 group-hover:bg-gradient-to-br group-hover:from-primary/40 group-hover:to-accent/40 divine-glow"
                     animate={{
                       rotate: [0, 360],
                       scale: [1, 1.1, 1],
+                      boxShadow: [
+                        "0 0 20px hsl(var(--primary) / 0.3)",
+                        "0 0 40px hsl(var(--primary) / 0.5)",
+                        "0 0 20px hsl(var(--primary) / 0.3)"
+                      ]
                     }}
                     transition={{
-                      duration: 10,
+                      duration: 8,
                       repeat: Infinity,
-                      ease: 'linear',
-                      delay: index * 0.5
+                      ease: 'easeInOut',
+                      delay: index * 0.3
+                    }}
+                    whileHover={{
+                      rotate: 180,
+                      scale: 1.3,
+                      transition: { duration: 0.3 }
                     }}
                   >
-                    <service.icon className="h-8 w-8 text-primary icon-glow transition-all duration-300 group-hover:text-white" />
+                    <service.icon className="h-8 w-8 text-primary icon-glow transition-all duration-500 group-hover:text-white group-hover:drop-shadow-[0_0_15px_hsl(var(--primary))]" />
                   </motion.div>
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                   <CardDescription className="pt-2 text-muted-foreground">{service.description}</CardDescription>
