@@ -10,9 +10,9 @@ import { motion } from "framer-motion";
 
 export function Footer() {
   const socialLinks = [
-    { icon: Twitter, href: "https://twitter.com/kawachiinfra", label: "Twitter" },
-    { icon: Facebook, href: "https://facebook.com/kawachiinfra", label: "Facebook" },
-    { icon: Linkedin, href: "https://linkedin.com/company/kawachi-infratech", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://linkedin.com/company/kawachi-infratech", label: "LinkedIn", color: "rgba(0, 119, 181, 0.8)" },
+    { icon: Instagram, href: "https://instagram.com/kawachiinfratech", label: "Instagram", color: "rgba(225, 48, 108, 0.8)" },
+    { icon: Mail, href: "mailto:info@kawachiinfratech.com", label: "Email", color: "rgba(0, 255, 255, 0.8)" },
   ];
 
   const contactInfo = [
