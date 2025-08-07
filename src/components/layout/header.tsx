@@ -207,12 +207,16 @@ export function Header() {
                     <a
                       href={link.href}
                       onClick={(e) => handleSmoothScroll(e, link.href)}
-                      className="text-2xl md:text-3xl font-bold text-foreground transition-all duration-300 hover:text-gradient-hero glassmorphic px-6 py-3 rounded-xl border border-white/10 cursor-pointer"
+                      className="text-2xl md:text-3xl font-bold text-foreground transition-all duration-500 hover:text-gradient-hero px-6 py-4 rounded-xl border border-white/20 cursor-pointer relative overflow-hidden group"
                       style={{
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)'
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,255,255,0.05) 50%, rgba(255,255,255,0.05) 100%)',
+                        backdropFilter: 'blur(15px)',
+                        WebkitBackdropFilter: 'blur(15px)',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                       }}
                     >
-                      {link.label}
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <span className="relative z-10">{link.label}</span>
                     </a>
                   </motion.div>
                 ))}
