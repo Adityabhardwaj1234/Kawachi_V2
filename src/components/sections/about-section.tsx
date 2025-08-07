@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from 'react';
-import { StarsBackground } from '@/components/ui/stars-background';
+import { CelestialBackground } from '@/components/ui/celestial-background';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -21,7 +22,8 @@ export function AboutSection() {
 
   return (
     <section id="about" className="py-20 md:py-32 bg-divine relative overflow-hidden" ref={ref}>
-      <StarsBackground />
+      <CelestialBackground />
+      <FloatingParticles />
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
