@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef } from 'react';
@@ -61,11 +60,11 @@ export function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-20 md:py-32 bg-background overflow-hidden" ref={ref}>
+    <section id="projects" className="py-20 md:py-32 bg-divine floating-particles overflow-hidden relative" ref={ref}>
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-sm font-bold uppercase text-primary mb-2">Our Portfolio</h2>
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gradient-hero">
             Showcasing Our Finest Work
           </h3>
           <p className="text-muted-foreground">
@@ -83,12 +82,21 @@ export function ProjectsSection() {
               variants={cardVariants}
             >
               <motion.div
-                whileHover={{ y: -15, rotateX: 10, scale: 1.05, boxShadow: "0px 25px 50px -12px rgba(0, 255, 255, 0.2)" }}
-                transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+                whileHover={{
+                  y: -20,
+                  rotateX: 15,
+                  scale: 1.08,
+                  boxShadow: [
+                    "0px 40px 80px -12px rgba(0, 255, 255, 0.4)",
+                    "0 0 60px hsl(var(--primary) / 0.5)"
+                  ],
+                  filter: "brightness(1.1)"
+                }}
+                transition={{ type: 'spring', stiffness: 150, damping: 15 }}
                 className="h-full relative group"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-                <Card className="overflow-hidden h-full flex flex-col transform-style-3d glassmorphic relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:duration-300 animate-divine-pulse"></div>
+                <Card className="overflow-hidden h-full flex flex-col transform-style-3d glassmorphic-card neumorphic-card relative divine-glow-hover">
                   <CardContent className="p-0 relative">
                     <motion.div className="overflow-hidden">
                       <Image
@@ -97,19 +105,32 @@ export function ProjectsSection() {
                         data-ai-hint={project.image.hint}
                         width={600}
                         height={400}
-                        className="object-cover w-full h-64 transition-transform duration-500 ease-in-out group-hover:scale-110"
+                        className="object-cover w-full h-64 transition-all duration-700 ease-out group-hover:scale-115 group-hover:brightness-110 group-hover:contrast-110"
                       />
                     </motion.div>
-                     <Badge variant="default" className="absolute top-4 right-4 bg-primary/80 backdrop-blur-sm">{project.category}</Badge>
+                     <Badge variant="default" className="absolute top-4 right-4 bg-gradient-to-r from-primary/90 to-accent/90 backdrop-blur-md border border-white/20 text-white font-semibold shadow-lg">{project.category}</Badge>
                   </CardContent>
-                  <CardFooter className="p-6 bg-card/70 flex-grow flex-col items-start">
+                  <CardFooter className="p-6 bg-gradient-to-t from-background/95 to-background/80 backdrop-blur-xl flex-grow flex-col items-start">
                     <h4 className="text-xl font-bold mb-1">{project.title}</h4>
                     <p className="text-muted-foreground mb-4">{project.location}</p>
-                    <Button asChild variant="link" className="p-0 h-auto mt-auto">
-                      <Link href={`/project/${project.slug}`}>
-                        View Project Details <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
-                      </Link>
-                    </Button>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="mt-auto"
+                    >
+                      <Button asChild variant="link" className="p-0 h-auto text-primary hover:text-accent transition-all duration-300">
+                        <Link href={`/project/${project.slug}`}>
+                          View Project Details
+                          <motion.div
+                            className="ml-2 inline-block"
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                          >
+                            <ArrowRight className="h-4 w-4" />
+                          </motion.div>
+                        </Link>
+                      </Button>
+                    </motion.div>
                   </CardFooter>
                 </Card>
               </motion.div>
