@@ -275,20 +275,25 @@ export function HeroSection() {
           </motion.div>
           <motion.div
             whileHover={{
-              scale: 1.1,
-              y: -3,
-              boxShadow: "0 0 30px hsl(var(--primary) / 0.6)"
+              scale: 1.05,
+              y: -5,
+              boxShadow: "0 0 40px hsl(var(--accent) / 0.8), 0 0 80px hsl(var(--accent) / 0.4)",
+              filter: "brightness(1.1)",
             }}
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="neumorphic-outline glassmorphic-card text-foreground hover:text-primary hover:border-primary divine-glow-hover"
-            >
-              <a
-                href="#contact"
+            <RippleEffect className="rounded-lg">
+              <Button
+                size="lg"
+                variant="outline"
+                className="neumorphic-outline glassmorphic-card text-foreground hover:text-primary hover:border-primary px-8 py-4 text-lg font-bold relative overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,255,255,0.05) 50%, rgba(255,255,255,0.05) 100%)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '2px solid rgba(0, 255, 255, 0.3)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                }}
                 onClick={(e) => {
                   e.preventDefault();
                   const contactSection = document.getElementById('contact');
@@ -303,14 +308,16 @@ export function HeroSection() {
                   }
                 }}
               >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
                 <motion.span
-                  animate={{ opacity: [0.8, 1, 0.8] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative z-10"
+                  animate={{ opacity: [0.9, 1, 0.9] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
                   Get In Touch
                 </motion.span>
-              </a>
-            </Button>
+              </Button>
+            </RippleEffect>
           </motion.div>
         </motion.div>
       </motion.div>
