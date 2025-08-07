@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from 'react';
+import { StarsBackground } from '@/components/ui/stars-background';
 import Image from 'next/image';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -56,7 +57,8 @@ export function NewsSection() {
   };
 
   return (
-    <section id="news" className="py-20 md:py-32 bg-divine floating-particles relative overflow-hidden" ref={ref}>
+    <section id="news" className="py-20 md:py-32 bg-divine relative overflow-hidden" ref={ref}>
+      <StarsBackground />
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center max-w-2xl mx-auto mb-16"
