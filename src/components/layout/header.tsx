@@ -108,8 +108,14 @@ export function Header() {
               ))}
             </nav>
             <div className="flex items-center gap-4">
-               <Button asChild className="hidden md:inline-flex btn-gradient-contact rounded-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40">
-                <Link href="#contact">Contact</Link>
+               <Button
+                className="hidden md:inline-flex btn-gradient-contact rounded-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSmoothScroll(e as any, '#contact');
+                }}
+              >
+                Contact
               </Button>
               <motion.button
                 className="md:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center space-y-1.5 focus:outline-none"
