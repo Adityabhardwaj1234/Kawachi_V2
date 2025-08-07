@@ -21,8 +21,10 @@ export function StarsBackground() {
 
   const stars = useMemo(() => {
     if (!isMounted) return [];
-    
-    const numStars = 200;
+
+    // Reduce stars on mobile for better performance
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const numStars = isMobile ? 100 : 200;
     const colors = [
       'rgba(255, 255, 255, 0.9)',
       'rgba(0, 255, 255, 0.8)',
