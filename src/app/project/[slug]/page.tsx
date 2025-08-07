@@ -107,29 +107,74 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             <main className="flex-grow pt-24 relative z-20">
               <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
-                <div className="mb-12">
-                     <Button asChild variant="outline">
-                        <Link href="/#projects" className="inline-flex items-center gap-2">
-                            <ArrowLeft className="h-4 w-4" />
-                            Back to Portfolio
-                        </Link>
+                <motion.div
+                  className="mb-12"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <RippleEffect>
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="glassmorphic-card border-white/20 hover:border-primary transition-all duration-500"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,255,255,0.05) 50%, rgba(255,255,255,0.05) 100%)',
+                        backdropFilter: 'blur(20px)',
+                        WebkitBackdropFilter: 'blur(20px)',
+                      }}
+                    >
+                      <Link href="/#projects" className="inline-flex items-center gap-2">
+                        <ArrowLeft className="h-4 w-4" />
+                        Back to Portfolio
+                      </Link>
                     </Button>
-                </div>
+                  </RippleEffect>
+                </motion.div>
                 
-                <div className="text-center mb-12">
-                    <p className="text-primary font-bold uppercase mb-2">{project.category}</p>
-                    <h1 className="text-4xl md:text-6xl font-bold text-gradient-hero">{project.title}</h1>
-                </div>
+                <motion.div
+                  className="text-center mb-12"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <motion.p
+                    className="text-primary font-bold uppercase mb-2"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {project.category}
+                  </motion.p>
+                  <motion.h1
+                    className="text-4xl md:text-6xl font-bold text-gradient-hero"
+                    style={{
+                      textShadow: '0 0 30px hsl(var(--primary) / 0.8), 0 0 60px hsl(var(--gradient-via) / 0.4)',
+                      filter: 'drop-shadow(0 0 20px hsl(var(--primary)))'
+                    }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                  >
+                    {project.title}
+                  </motion.h1>
+                </motion.div>
 
-                <div className="mb-12 rounded-lg overflow-hidden shadow-2xl shadow-primary/20">
-                    <Image
-                        src={project.image}
-                        alt={project.title}
-                        width={1200}
-                        height={600}
-                        className="w-full object-cover"
-                    />
-                </div>
+                <motion.div
+                  className="mb-12 rounded-lg overflow-hidden shadow-2xl shadow-primary/20 glassmorphic-card"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  whileHover={{ scale: 1.02, boxShadow: "0 0 40px hsl(var(--primary) / 0.3)" }}
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={1200}
+                    height={600}
+                    className="w-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </motion.div>
 
                 <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-12">
                     <div className="md:col-span-2">
