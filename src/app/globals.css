@@ -313,6 +313,53 @@
     animation: gradient-pan 10s ease infinite;
   }
 
+  /* Enhanced mobile responsiveness */
+  @media (max-width: 768px) {
+    .glassmorphic-card {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .text-gradient-hero {
+      font-size: clamp(2rem, 8vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .divine-glow {
+      box-shadow: 0 0 15px hsl(var(--primary) / 0.3), 0 0 30px hsl(var(--primary) / 0.15);
+    }
+
+    .animate-float {
+      animation-duration: 4s;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-gradient-hero {
+      font-size: clamp(1.5rem, 10vw, 2.5rem);
+    }
+
+    .glassmorphic {
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (pointer: coarse) {
+    .neumorphic-card:hover {
+      transform: none;
+    }
+
+    .divine-glow-hover:hover {
+      transform: none;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  }
+
   @keyframes dots {
     0% { transform: translate(0, 0) scale(var(--scale-start)); opacity: 0; }
     20% { opacity: 1; }
