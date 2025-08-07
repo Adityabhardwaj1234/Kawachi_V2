@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { AnimatedBackground } from '../ui/animated-background';
+import { RippleEffect } from '../ui/ripple-effect';
 
 export function HeroSection() {
   const containerVariants = {
