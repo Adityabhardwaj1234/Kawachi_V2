@@ -140,21 +140,37 @@ export function Footer() {
               {socialLinks.map((social, index) => (
                 <motion.div
                   key={index}
-                  whileHover={{ 
-                    scale: 1.2, 
-                    y: -3,
-                    boxShadow: "0 0 20px hsl(var(--primary) / 0.6)"
+                  whileHover={{
+                    scale: 1.15,
+                    y: -5,
+                    boxShadow: `0 0 30px ${social.color}, 0 0 60px ${social.color}`,
                   }}
                   whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    asChild 
-                    className="glassmorphic-card border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-300"
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    asChild
+                    className="glassmorphic-card border-white/20 hover:border-primary transition-all duration-500 relative overflow-hidden group"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,255,255,0.05) 50%, rgba(255,255,255,0.05) 100%)',
+                      backdropFilter: 'blur(20px)',
+                      WebkitBackdropFilter: 'blur(20px)',
+                    }}
                   >
                     <Link href={social.href} aria-label={social.label}>
-                      <social.icon className="h-4 w-4" />
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                        style={{ background: `radial-gradient(circle, ${social.color} 0%, transparent 70%)` }}
+                      />
+                      <social.icon
+                        className="h-5 w-5 relative z-10 transition-all duration-300 group-hover:scale-110"
+                        style={{ color: social.color }}
+                      />
                     </Link>
                   </Button>
                 </motion.div>
