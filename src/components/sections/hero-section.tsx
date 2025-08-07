@@ -218,53 +218,60 @@ export function HeroSection() {
 
           <motion.div
             animate={{
-              scale: [1, 1.05, 1],
+              scale: [1, 1.02, 1],
               boxShadow: [
-                "0 0 20px hsl(var(--primary) / 0.5)",
-                "0 0 40px hsl(var(--primary) / 0.8)",
-                "0 0 20px hsl(var(--primary) / 0.5)"
+                "0 0 30px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--primary) / 0.3)",
+                "0 0 50px hsl(var(--primary) / 0.9), 0 0 100px hsl(var(--primary) / 0.5)",
+                "0 0 30px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--primary) / 0.3)"
               ],
             }}
             transition={{
-              duration: 3,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut",
             }}
             className="rounded-lg relative"
             whileHover={{
-              scale: 1.1,
-              boxShadow: "0 0 50px hsl(var(--primary) / 0.9)",
-              y: -5
+              scale: 1.05,
+              boxShadow: "0 0 80px hsl(var(--primary)), 0 0 160px hsl(var(--primary) / 0.6)",
+              y: -8,
+              filter: "brightness(1.2)",
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button
-              asChild
-              size="lg"
-              className="btn-gradient rounded-lg shadow-lg divine-glow relative overflow-hidden"
-              onClick={(e) => {
-                e.preventDefault();
-                const aboutSection = document.getElementById('about');
-                if (aboutSection) {
-                  const headerHeight = 96;
-                  const elementPosition = aboutSection.getBoundingClientRect().top;
-                  const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-                  window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                  });
-                }
-              }}
-            >
-              <a href="#about">
+            <RippleEffect className="rounded-lg">
+              <Button
+                size="lg"
+                className="btn-gradient rounded-lg shadow-2xl relative overflow-hidden px-8 py-4 text-lg font-bold"
+                style={{
+                  background: 'linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
+                  backgroundSize: '200% 200%',
+                  animation: 'gradient-shift 3s ease infinite',
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const aboutSection = document.getElementById('about');
+                  if (aboutSection) {
+                    const headerHeight = 96;
+                    const elementPosition = aboutSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
                 <motion.span
-                  animate={{ x: [0, 3, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative z-10"
+                  animate={{ x: [0, 2, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
                   Company Profile
                 </motion.span>
-              </a>
-            </Button>
+              </Button>
+            </RippleEffect>
           </motion.div>
           <motion.div
             whileHover={{
