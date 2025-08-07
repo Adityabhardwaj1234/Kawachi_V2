@@ -97,11 +97,16 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Header />
-      <main className="flex-grow pt-24">
-        <section className="py-16 md:py-24">
-            <div className="container mx-auto px-4">
+    <ParallaxProvider>
+      <MotionProvider>
+        <RippleProvider>
+          <div className="flex flex-col min-h-screen bg-divine relative overflow-hidden">
+            <CelestialBackground />
+            <FloatingParticles />
+            <Header />
+            <main className="flex-grow pt-24 relative z-20">
+              <section className="py-16 md:py-24">
+                <div className="container mx-auto px-4">
                 <div className="mb-12">
                      <Button asChild variant="outline">
                         <Link href="/#projects" className="inline-flex items-center gap-2">
@@ -144,9 +149,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     </div>
                 </div>
             </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+              </section>
+            </main>
+            <Footer />
+          </div>
+        </RippleProvider>
+      </MotionProvider>
+    </ParallaxProvider>
   );
 }
