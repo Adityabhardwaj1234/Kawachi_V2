@@ -1,10 +1,16 @@
-
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { CelestialBackground } from '@/components/ui/celestial-background';
+import { FloatingParticles } from '@/components/ui/floating-particles';
+import { RippleEffect } from '@/components/ui/ripple-effect';
+import { motion } from "framer-motion";
+import { ParallaxProvider } from "@/components/providers/parallax-provider";
+import { MotionProvider } from "@/components/providers/motion-provider";
+import { RippleProvider } from "@/components/providers/ripple-provider";
 
 // Mock data - in a real app, this would come from a CMS or database
 const projects: { [key: string]: any } = {
