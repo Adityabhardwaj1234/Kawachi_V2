@@ -203,12 +203,14 @@ export function Header() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button
-                    asChild
                     className="btn-gradient-contact rounded-xl shadow-lg shadow-cyan-500/30 px-8 py-3 text-lg"
                     size="lg"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSmoothScroll(e as any, '#contact');
+                    }}
                   >
-                    <Link href="#contact">Get In Touch</Link>
+                    Get In Touch
                   </Button>
                 </motion.div>
               </motion.div>
