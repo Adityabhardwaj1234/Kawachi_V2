@@ -4,7 +4,8 @@ import { useState, type FormEvent } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { StarsBackground } from '@/components/ui/stars-background';
+import { CelestialBackground } from '@/components/ui/celestial-background';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 import { motion } from 'framer-motion';
 
 export function NewsletterSection() {
@@ -31,7 +32,8 @@ export function NewsletterSection() {
 
   return (
     <section className="py-20 md:py-32 bg-divine relative overflow-hidden">
-      <StarsBackground />
+      <CelestialBackground />
+      <FloatingParticles />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="relative glassmorphic-card neumorphic-card p-8 md:p-16 rounded-xl overflow-hidden divine-glow-hover"
