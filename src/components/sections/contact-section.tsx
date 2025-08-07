@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { StarsBackground } from '@/components/ui/stars-background';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
@@ -20,7 +21,8 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-divine floating-particles relative overflow-hidden">
+    <section id="contact" className="py-20 md:py-32 bg-divine relative overflow-hidden">
+      <StarsBackground />
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-sm font-bold uppercase text-primary mb-2">Contact Us</h2>
