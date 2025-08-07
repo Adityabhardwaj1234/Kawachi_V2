@@ -97,13 +97,14 @@ export function Header() {
             </a>
             <nav className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary animated-underline"
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
+                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary animated-underline cursor-pointer"
                 >
                   {link.label}
-                </Link>
+                </a>
               ))}
             </nav>
             <div className="flex items-center gap-4">
