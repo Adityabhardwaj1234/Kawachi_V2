@@ -7,6 +7,7 @@ import { Logo } from "@/components/icons/logo";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Twitter, Facebook, Mail, Phone, MapPin, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
+import { RippleEffect } from '@/components/ui/ripple-effect';
 
 export function Footer() {
   const socialLinks = [
