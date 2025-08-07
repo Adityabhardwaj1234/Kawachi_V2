@@ -178,16 +178,16 @@ export function Header() {
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Link
+                    <a
                       href={link.href}
-                      className="text-2xl md:text-3xl font-bold text-foreground transition-all duration-300 hover:text-gradient-hero glassmorphic px-6 py-3 rounded-xl border border-white/10"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
+                      className="text-2xl md:text-3xl font-bold text-foreground transition-all duration-300 hover:text-gradient-hero glassmorphic px-6 py-3 rounded-xl border border-white/10 cursor-pointer"
                       style={{
                         background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)'
                       }}
                     >
                       {link.label}
-                    </Link>
+                    </a>
                   </motion.div>
                 ))}
               </motion.nav>
