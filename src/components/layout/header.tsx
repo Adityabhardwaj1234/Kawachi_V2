@@ -87,11 +87,21 @@ export function Header() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-700",
           isScrolled
-            ? "glassmorphic shadow-lg shadow-cyan-500/10 border-b border-cyan-400/30"
-            : "bg-transparent"
+            ? "bg-gradient-to-r from-background/80 via-background/90 to-background/80 backdrop-blur-2xl border-b border-gradient-to-r from-transparent via-primary/40 to-transparent shadow-2xl shadow-primary/20"
+            : "bg-gradient-to-r from-background/20 via-background/30 to-background/20 backdrop-blur-xl"
         )}
+        style={{
+          background: isScrolled
+            ? 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,20,40,0.9) 50%, rgba(0,0,0,0.85) 100%)'
+            : 'linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,20,40,0.4) 50%, rgba(0,0,0,0.3) 100%)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          boxShadow: isScrolled
+            ? '0 8px 32px rgba(0, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            : '0 4px 16px rgba(0, 0, 0, 0.1)',
+        }}
       >
         <div className="container mx-auto px-4">
           <div className="flex h-24 items-center justify-between">
