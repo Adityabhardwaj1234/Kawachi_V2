@@ -4,7 +4,8 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { StarsBackground } from '@/components/ui/stars-background';
+import { CelestialBackground } from '@/components/ui/celestial-background';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 import * as React from "react";
 
 const faqItems = [
@@ -79,7 +80,8 @@ AccordionContent.displayName = "AccordionContent";
 export function FaqSection() {
   return (
     <section className="py-20 md:py-32 bg-divine relative overflow-hidden">
-      <StarsBackground />
+      <CelestialBackground />
+      <FloatingParticles />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
