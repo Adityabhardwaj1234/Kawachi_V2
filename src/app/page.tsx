@@ -11,6 +11,7 @@ import { MotionProvider } from "@/components/providers/motion-provider";
 import { ContactSection } from "@/components/sections/contact-section";
 import { NewsSection } from "@/components/sections/news-section";
 import { RippleProvider } from "@/components/providers/ripple-provider";
+import { ParallaxProvider } from "@/components/providers/parallax-provider";
 
 export default function Home() {
   return (
