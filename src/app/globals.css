@@ -372,6 +372,32 @@
     }
   }
 
+  /* Performance optimizations */
+  .animate-float, .animate-float-slow, .animate-float-fast {
+    will-change: transform;
+  }
+
+  .text-gradient-hero {
+    will-change: filter;
+  }
+
+  .glassmorphic, .glassmorphic-card {
+    will-change: backdrop-filter;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .animate-float, .animate-float-slow, .animate-float-fast {
+      animation: none;
+    }
+  }
+
   @keyframes dots {
     0% { transform: translate(0, 0) scale(var(--scale-start)); opacity: 0; }
     20% { opacity: 1; }
