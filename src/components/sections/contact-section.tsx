@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { CelestialBackground } from '@/components/ui/celestial-background';
 import { FloatingParticles } from '@/components/ui/floating-particles';
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { AnimatedInput, AnimatedTextarea } from "@/components/ui/animated-input";
+import { RippleEffect } from '@/components/ui/ripple-effect';
 import { useToast } from "@/hooks/use-toast";
 import { Mail, MapPin, Phone, Building } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -122,61 +122,87 @@ export function ContactSection() {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <motion.div
-                whileFocus={{ scale: 1.02, boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <Input
+                <AnimatedInput
+                  label="Your Name"
                   type="text"
-                  placeholder="Your Name"
                   required
-                  className="bg-gradient-to-r from-background/60 to-background/40 border-white/20 focus:ring-primary focus:border-primary transition-all duration-300 hover:border-primary/50"
+                  variant="divine"
                 />
               </motion.div>
               <motion.div
-                whileFocus={{ scale: 1.02, boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Input
+                <AnimatedInput
+                  label="Your Email"
                   type="email"
-                  placeholder="Your Email"
                   required
-                  className="bg-gradient-to-r from-background/60 to-background/40 border-white/20 focus:ring-primary focus:border-primary transition-all duration-300 hover:border-primary/50"
+                  variant="divine"
                 />
               </motion.div>
               <motion.div
-                whileFocus={{ scale: 1.02, boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <Input
+                <AnimatedInput
+                  label="Subject"
                   type="text"
-                  placeholder="Subject"
                   required
-                  className="bg-gradient-to-r from-background/60 to-background/40 border-white/20 focus:ring-primary focus:border-primary transition-all duration-300 hover:border-primary/50"
+                  variant="divine"
                 />
               </motion.div>
               <motion.div
-                whileFocus={{ scale: 1.02, boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <Textarea
-                  placeholder="Your Message"
+                <AnimatedTextarea
+                  label="Your Message"
                   rows={5}
                   required
-                  className="bg-gradient-to-r from-background/60 to-background/40 border-white/20 focus:ring-primary focus:border-primary transition-all duration-300 hover:border-primary/50"
+                  variant="divine"
                 />
               </motion.div>
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full btn-gradient rounded-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 divine-glow-hover relative overflow-hidden"
-                >
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                <RippleEffect className="w-full rounded-lg">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full btn-gradient rounded-lg shadow-2xl relative overflow-hidden px-8 py-4 text-lg font-bold"
+                    style={{
+                      background: 'linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
+                      backgroundSize: '200% 200%',
+                      animation: 'gradient-shift 3s ease infinite',
+                      boxShadow: '0 0 40px hsl(var(--primary) / 0.4), 0 0 80px hsl(var(--primary) / 0.2)',
+                    }}
                   >
-                    Send Message
-                  </motion.span>
-                </Button>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
+                    <motion.span
+                      className="relative z-10"
+                      animate={{ x: [0, 2, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      Send Message
+                    </motion.span>
+                  </Button>
+                </RippleEffect>
               </motion.div>
             </form>
           </motion.div>
